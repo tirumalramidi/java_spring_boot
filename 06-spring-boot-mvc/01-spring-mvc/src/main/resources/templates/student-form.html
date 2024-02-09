@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+</head>
+<body>
+<h3>Student Registration Form</h3>
+
+<form method="POST" th:action="@{/processStudentForm}" th:object="${student}">
+
+    First name: <input type="text" th:field="*{firstName}">
+    <br><br>
+    Last name: <input type="text" th:field="*{lastName}">
+    <br><br>
+    Country:
+    <select th:field="*{country}">
+<!--        <option th:value="Brazil">Brazil</option>-->
+<!--        <option th:value="USA">USA</option>-->
+<!--        <option th:value="Russia">Russia</option>-->
+<!--        <option th:value="UK">UK</option>-->
+<!--        <option th:value="India">India</option>-->
+
+        <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
+
+    </select>
+    <br><br>
+
+    Favourite Programming Language:
+<!--    <input type="radio" th:field="*{favLang}" th:value="Go">Go-->
+<!--    <input type="radio" th:field="*{favLang}" th:value="Python">Python-->
+<!--    <input type="radio" th:field="*{favLang}" th:value="Java">Java-->
+
+<!--    <input type="radio" th:each="templang : ${languages}" th:field="*{favLang]" th:text="${templang}">-->
+<!--    <input type="radio" th:field="*{favLang]" th:each="templang : ${languages}"-->
+<!--           th:value="${templang}" th:text="${templang}"/>-->
+
+    <input type="radio" th:field="*{favLang}"
+           th:each="tempLang : ${languages}"
+           th:value="${tempLang}"
+           th:text="${tempLang}" />
+
+
+    <br><br>
+
+    <input type="checkbox" th:field="*{favSystems}"
+           th:each="tempSys : ${systems}"
+           th:value="${tempSys}"
+           th:text="${tempSys}" />
+
+
+    <br><br>
+    <input type="submit" value="submit">
+
+</form>
+
+</body>
+</html>
